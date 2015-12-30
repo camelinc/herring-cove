@@ -234,10 +234,19 @@ blockquote
 {
   border-left:2px solid #d90006;
   border-right:2px solid #d90006;
-  margin-left:-40px;
-  margin-right:-40px;
+/*  margin-left:-40px; */
+/*  margin-right:-40px; */
   padding-left:40px;
+  padding-top: 0;
+  padding-bottom: 0;
   background:#f3f3f7
+}
+blockquote p {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 200;
+  line-height: 20px;
+  color: #555;
 }
 
 ul,ol
@@ -780,4 +789,13 @@ time
   font-size: small;
 }
 
+}
+
+
+/*own style*/
+figure.fsmall {
+    width: 40%;
+}
+figure.fcenter  {
+    margin: 0 auto;
 }
