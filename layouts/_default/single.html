@@ -5,6 +5,8 @@
 
 <body>
 {{ partial "header.html" . }}
+
+
   <div id="article">
    <div class="article-title">{{ .Title }}</div>
    <p class="meta"><small>&nbsp;<i class="fa fa-calendar-o"></i> {{ .Date.Format  "2006-01-02" }}</small></p> <hr/>
@@ -22,6 +24,7 @@
 
     </ul>
     </div>
-{{ partial "footer.html" }}
+{{ partial "footer.html" . }}
+
 	</body>
 </html>
