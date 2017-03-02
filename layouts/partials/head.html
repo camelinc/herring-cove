@@ -4,18 +4,18 @@
   <title>{{ .Title }}</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta itemprop="description" content="{{ if .Site.Params.Description }}{{ .Site.Params.Description }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ end }}{{ end }}">
+  <meta itemprop="description" content="{{ if .IsPage }}{{ .Description }}{{ else }}{{if .Site.Params.Description}}{{ .Site.Params.Description }}{{ end }}{{ end }}">
 
   {{ with .Params.images }}{{ range first 6 . }}
     <meta itemprop="image" content="{{ . | absURL }}">
   {{ end }}{{ end }}
-  <meta itemprop="keywords" content="{{ range $plural, $terms := .Site.Taxonomies }}{{ range $term, $val := $terms }}{{ printf "%s," $term }}{{ end }}{{ end }}" />
+  <meta itemprop="keywords" content="{{ delimit .Keywords ", " }}" />
   {{if .IsPage}}
     <meta itemprop="wordCount" content="{{ .WordCount }}">
   {{ end }}
 
   <meta property="og:title" content="{{ .Title }}" />
-  <meta property="og:description" content="{{ if .Site.Params.Description }}{{ .Site.Params.Description }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ end }}{{ end }}" />
+  <meta property="og:description" content="{{ if .Site.Params.Description }}{{ .Site.Params.Description }}{{ else }}{{if .IsPage}}{{ .Description }}{{ end }}{{ end }}" />
   <meta property="og:type" content="{{ if .Params.type }}{{ .Params.type }}{{ else }}website{{ end }}" />
   <meta property="og:url" content="{{ .Permalink }}" />
   {{ with .Params.images }}{{ range first 6 . }}
@@ -41,34 +41,31 @@
 
   <!-- Twitter Card data -->
   <meta name="twitter:title" content="{{ .Title }}"/>
-  <meta name="twitter:description" content="{{ if .Site.Params.Description }}{{ .Site.Params.Description }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ end }}{{ end }}"/>
+  <meta name="twitter:description" content="{{ if .Site.Params.Description }}{{ .Site.Params.Description }}{{ else }}{{if .IsPage}}{{ .Description }}{{ end }}{{ end }}"/>
   {{ with .Site.Params.social.twitter }}<meta name="twitter:site" content="@{{ . }}"/>{{ end }}
   {{ if isset .Params "author" }}
     {{ $author := index .Site.Params.authors .Params.author }}
     {{ with $author.twitter }}<meta name="twitter:creator" content="@{{ $author.twitter }}"/>{{ end }}
   {{ end }}
 
-
-  {{ .Hugo.Generator }}
   <link href="{{ .RSSlink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
-  <link href="{{ .Site.BaseURL }}css/bootstrap.min.css" rel="stylesheet">
-  <link href="{{ .Site.BaseURL }}css/hc.css" rel="stylesheet">
+  <link href="{{ .Site.BaseURL }}/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ .Site.BaseURL }}/css/hc.css" rel="stylesheet">
 
   <!-- pygments highlighting //-->
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}css/zenburn.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/zenburn.css" type="text/css" media="screen" />
 
   <!-- Add jQuery library
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
   //-->
 
   <!-- lightbox2 //-->
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}lightbox/css/lightbox.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}/lightbox/css/lightbox.css" type="text/css" media="screen">
 
-
+  {{ .Hugo.Generator }}
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif] d-->
 </head>
- 

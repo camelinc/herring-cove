@@ -13,18 +13,18 @@
           </button>
           <a href="{{ .Site.BaseURL }}/"><p class="navbar-brand">{{ .Site.Title }}</p></a>
         </div>
+
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-					{{ $baseUrl:= .Site.BaseURL }}
+					{{ $baseUrl := .Site.BaseURL }}
+          <h2>{{ .Site.BaseURL }}</h2>
 					{{range $key, $element := .Site.Params.links}}
-					<li><a href="{{ $baseUrl}}{{ $element }}">{{title $key }} </a></li>
+					<li><a href="{{ $baseUrl }}{{ $element }}">{{title $key }} </a></li>
 					{{ end }}
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
-
 
        <!-- Sidebar -->
        <div id="sidebar-wrapper">
@@ -60,4 +60,3 @@
      </div>
 
      <div class="container">
-
